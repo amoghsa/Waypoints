@@ -1,13 +1,13 @@
 # Waypoints Privacy Policy
 
 **Effective date:** 2026-07-16
-**Last updated:** 2026-07-22
+**Last updated:** 2026-10-31
 
 Waypoints ("we", "us", "the app") is a native EV road-trip planner for iOS and iPadOS. This policy explains what data the app handles and where it lives. We've tried to keep it short and free of legalese — if anything is unclear, open an issue at https://github.com/amoghsa/Waypoints/issues.
 
 ## Summary, in one paragraph
 
-Everything you put into Waypoints — your trips, the stops you plan, your household profile, your vehicle choice, and the dwell habits the app learns — is stored and computed **locally on your device**. We do not run a backend for your data, we do not have accounts, and we do not sync anything to the cloud. To plan around real charging, the app does send the **route you're viewing** — the coordinates of your trip's start, destinations, and stops — to our own backend so it can look up public charging stations along that route and, where a network reports it, how busy they are; those requests carry no name, no household details, and no account (there are no accounts), and are never used to build a profile of you. There are no advertising or analytics SDKs, no ads, and no background tracking of any kind. What is new in this version: Waypoints now offers **optional links you tap yourself** to third-party travel services — a "Find a place to stay" lodging link on overnight/destination stops, and an "Open in … app" link to a charging network's own app. When *you choose* to tap one, the app opens that partner's site or app and passes along only the stop's location and your planned dates so it can show relevant results; it never sends your name, your household details, or any identity for you. We may earn a commission on bookings made this way, and that **never** influences how the app ranks chargers or stops. To remove your on-device data, reset it in the app or uninstall Waypoints.
+Everything you put into Waypoints — your trips, the stops you plan, your household profile, your vehicle choice, and the dwell habits the app learns — is stored and computed **locally on your device**. We do not run a backend for your data, we do not have accounts, and we do not sync anything to the cloud. To plan around real charging, the app does send the **route you're viewing** — the coordinates of your trip's start, destinations, and stops — to our own backend so it can look up public charging stations along that route and, where a network reports it, how busy they are; those requests carry no name, no household details, and no account (there are no accounts), and are never used to build a profile of you. There are no ads and no background tracking of any kind. The app does embed Firebase Analytics and Crashlytics for optional, opt-in analytics and crash reporting — but they are inert unless you turn them on in Settings ▸ Privacy (see "Optional analytics & crash reporting" below). What is new in this version: Waypoints now offers **optional links you tap yourself** to third-party travel services — a "Find a place to stay" lodging link on overnight/destination stops, and an "Open in … app" link to a charging network's own app. When *you choose* to tap one, the app opens that partner's site or app and passes along only the stop's location and your planned dates so it can show relevant results; it never sends your name, your household details, or any identity for you. We may earn a commission on bookings made this way, and that **never** influences how the app ranks chargers or stops. To remove your on-device data, reset it in the app or uninstall Waypoints.
 
 ## What stays only on your device
 
@@ -25,7 +25,7 @@ To clear just the learned dwell habits, use **Settings → Forget my habits**. T
 
 ## What is sent off the device
 
-**Your saved data is never uploaded.** Your trips, stops, household profile, learned habits, and preferences stay on your device — Waypoints has no backend for *them*, no accounts, no iCloud/CloudKit sync, and embeds no third-party analytics, advertising, or crash-reporting SDKs. Two things do leave your device, both described below: charger data the app fetches for the route you're viewing, and travel-partner links you tap yourself.
+**Your saved data is never uploaded.** Your trips, stops, household profile, learned habits, and preferences stay on your device — Waypoints has no backend for *them*, no accounts, no iCloud/CloudKit sync, and no third-party advertising SDKs. The one third-party SDK family it does embed — Firebase Analytics and Crashlytics — is opt-in and default off (see "Optional analytics & crash reporting" below). Three things can leave your device, described below: charger data the app fetches for the route you're viewing, travel-partner links you tap yourself, and optional analytics/crash data if you opt in.
 
 ### Charger data for the route you're viewing (automatic)
 
@@ -51,7 +51,18 @@ Once you follow one of these links you are on the third party's website or app, 
 
 **If you never tap these links, nothing is sent to a travel partner** — the only data the app sends on its own is the route lookup for charging described above.
 
-For transparency: the app also includes a developer-only diagnostic log present **only in debug builds** used during development. It writes to your device's own system log and never leaves the device. The release build you install from the App Store records nothing at all. Aside from the route lookup described above — which isn't tied to you or retained to profile you — the app embeds no analytics, advertising, or tracking SDKs; its Apple privacy manifest declares no collected data types and no in-app tracking. The partner links above are ordinary web navigations that you initiate, not in-app data collection.
+For transparency: the app also includes a developer-only diagnostic log present **only in debug builds** used during development. It writes to your device's own system log and never leaves the device. The release build you install from the App Store records nothing at all unless you opt in to analytics and crash reporting as described below. Aside from the route lookup described above — which isn't tied to you or retained to profile you — the app embeds no advertising or tracking SDKs; the Firebase Analytics/Crashlytics SDKs it does embed stay inert unless you opt in via Settings ▸ Privacy, and its Apple privacy manifest declares no data types used for tracking. The partner links above are ordinary web navigations that you initiate, not in-app data collection.
+
+## Optional analytics & crash reporting (opt-in, default off)
+
+Waypoints includes **optional** product analytics and crash reporting, built on Firebase Analytics and Crashlytics. This is **off by default** and nothing is measured or sent — not even in debug builds — until you turn it on in **Settings ▸ Privacy**.
+
+**What is collected, only if you opt in:**
+
+- **Product interaction events** — that the app launched, that you finished onboarding, that a trip was created or edited, that a plan was computed, that a trip was started or completed, that you advanced to the next waypoint, and that you used a reservation, lodging, or activity hand-off. These include the app's "wait-only minutes" figure — how much of your trip's charging time overlapped with something you were doing anyway. Events contain **no free-text content** (no trip names or notes), **no route coordinates**, and **no household data**.
+- **Crash data** — if the app crashes, Crashlytics captures the crash report automatically, and the product events above serve as breadcrumbs that help us understand what led up to it.
+
+**What this is not:** there are no accounts, no user IDs, and no advertising identifier — the app deliberately uses the Firebase Analytics build without ad-support/IDFA, so there is no advertising identifier and no App Tracking Transparency prompt. Nothing collected is linked to your identity, nothing is used for tracking, and none of it is ever sold. Everything else about the app's posture is unchanged: your trips, household profile, and learned habits stay on your device, route geometry still goes only to the Waypoints proxy for charger lookups, and the partner links work exactly as described above. You can turn analytics and crash reporting off again at any time in Settings ▸ Privacy.
 
 ## Affiliate disclosure
 
@@ -59,7 +70,7 @@ Some of the partner links above are affiliate links: if you book through them, W
 
 ## Permissions
 
-Waypoints requests **no system permissions**. It does not ask for location, microphone, camera, contacts, photos, calendar, health data, or notifications.
+Waypoints requests **no system permissions**, with one narrow exception: if you tap **Save Image** on a trip share card, iOS will ask for *add-only* Photos access so the app can save that one image. Add-only means exactly that — the app can put a new photo in, but it can never see, read, or delete anything in your library, and it never asks for full Photos access. Everything else is unchanged: the app does not ask for location, microphone, camera, contacts, calendar, health data, or notifications.
 
 ## Children's privacy
 
@@ -67,7 +78,7 @@ Waypoints is a trip-planning utility intended for adults planning a drive. If yo
 
 ## Changes to this policy
 
-This version (updated 2026-07-22) adds the **automatic charger lookup** described above: the app now sends the route you're viewing to our backend proxy to fetch real charging stations and live availability along it. The prior version (2026-07-16) had added the optional, user-initiated lodging and charging-network partner links; the original release had no network features at all. If we change what the app does again — for example, if a future version adds accounts, cloud sync, analytics, or starts sending anything beyond route geometry to the backend — we will update this document and bump the **Last updated** date before that change ships.
+This version (updated 2026-10-31) adds **opt-in Firebase analytics and crash reporting** as described above: the app now embeds Firebase Analytics (the no-ad-identifier build) and Crashlytics, but **nothing is collected unless you opt in via Settings ▸ Privacy** — no data flows while consent is off. The same update wires the share card's **Save Image** button, which uses add-only Photos access (see Permissions) and reads nothing from your library. The prior version (2026-07-22) added the **automatic charger lookup**: the app sends the route you're viewing to our backend proxy to fetch real charging stations and live availability along it. The version before that (2026-07-16) had added the optional, user-initiated lodging and charging-network partner links; the original release had no network features at all. If we change what the app does again — for example, if a future version adds accounts, cloud sync, or starts sending anything beyond route geometry to the backend — we will update this document and bump the **Last updated** date before that change ships.
 
 ## Contact
 
